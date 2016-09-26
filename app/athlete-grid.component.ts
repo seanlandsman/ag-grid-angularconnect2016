@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {GridOptions,AgRendererComponent} from 'ag-grid/main';
+import {GridOptions} from 'ag-grid/main';
+import {AgRendererComponent} from 'ag-grid-ng2/main';
 
 import {AthleteService} from "./athlete.service";
 import {Athlete} from "./athlete";
@@ -18,13 +19,13 @@ import {Athlete} from "./athlete";
 class StarComponent implements AgRendererComponent {
     private params:any;
     private color:string;
-    private medals:number = 3;
+    private medals:number[];
 
     agInit(params:any):void {
         this.params = params;
 
         // just to allow us to repeat the number of medals
-        this.medals = Array(this.params.value).fill().map((x,i)=>i);
+        this.medals = Array(this.params.value).fill(this.params.value);
 
         // made available via cellRendererParams
         this.color = this.params.color;
@@ -56,45 +57,49 @@ export class AthleteGridComponent implements OnInit {
             {headerName: "Athlete", field: "athlete", width: 200},
             {headerName: "Sport", field: "sport", width: 100},
             {headerName: "Year", field: "year", width: 80},
-            //{headerName: "Gold", field: "gold", width: 100},
-            //{headerName: "Silver", field: "silver", width: 100},
-            //{headerName: "Bronze", field: "bronze", width: 100},
-            {
-                headerName: "Gold",
-                field: "gold",
-                cellRendererFramework: {
-                    component: StarComponent,
-                    moduleImports: [CommonModule]
-                },
-                cellRendererParams: {
-                    color: "gold"
-                },
-                width: 100
-            },
-            {
-                headerName: "Silver",
-                field: "silver",
-                cellRendererFramework: {
-                    component: StarComponent,
-                    moduleImports: [CommonModule]
-                },
-                cellRendererParams: {
-                    color: "silver"
-                },
-                width: 100
-            },
-            {
-                headerName: "Bronze",
-                field: "bronze",
-                cellRendererFramework: {
-                    component: StarComponent,
-                    moduleImports: [CommonModule]
-                },
-                cellRendererParams: {
-                    color: "#CD7F32"
-                },
-                width: 100
-            }
+
+            // 1) comment these 3 out
+            {headerName: "Gold", field: "gold", width: 120},
+            {headerName: "Silver", field: "silver", width: 120},
+            {headerName: "Bronze", field: "bronze", width: 120},
+
+            // 2) uncomment these 3
+            //{
+            //    headerName: "Gold",
+            //    field: "gold",
+            //    cellRendererFramework: {
+            //        component: StarComponent,
+            //        moduleImports: [CommonModule]
+            //    },
+            //    cellRendererParams: {
+            //        color: "gold"
+            //    },
+            //    width: 120
+            //},
+            //{
+            //    headerName: "Silver",
+            //    field: "silver",
+            //    cellRendererFramework: {
+            //        component: StarComponent,
+            //        moduleImports: [CommonModule]
+            //    },
+            //    cellRendererParams: {
+            //        color: "silver"
+            //    },
+            //    width: 120
+            //},
+            //{
+            //    headerName: "Bronze",
+            //    field: "bronze",
+            //    cellRendererFramework: {
+            //        component: StarComponent,
+            //        moduleImports: [CommonModule]
+            //    },
+            //    cellRendererParams: {
+            //        color: "#CD7F32"
+            //    },
+            //    width: 120
+            //}
         ];
     }
 }
