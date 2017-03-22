@@ -1,40 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
 
 import {GridOptions} from 'ag-grid/main';
-import {AgRendererComponent} from 'ag-grid-ng2/main';
 
-import {AthleteService} from "./athlete.service";
-import {Athlete} from "./athlete";
-
-
-@Component({
-    selector: 'star',
-    template: `
-        <span>
-            <a *ngFor="let medal of medals" class="fa fa-star" [style.color]="color"></a>
-        </span>
-    `
-})
-class StarComponent implements AgRendererComponent {
-    private params:any;
-    private color:string;
-    private medals:number[];
-
-    agInit(params:any):void {
-        this.params = params;
-
-        // just to allow us to repeat the number of medals
-        this.medals = Array(this.params.value).fill(this.params.value);
-
-        // made available via cellRendererParams
-        this.color = this.params.color;
-    }
-}
+import {AthleteService} from "../services/athlete.service";
+import {Athlete} from "../athlete";
+import {StarComponent} from "./star.component";
 
 @Component({
+    moduleId: module.id,
     selector: 'athlete-grid',
-    templateUrl: 'app/athlete-grid.component.html'
+    templateUrl: 'athlete-grid.component.html'
 })
 export class AthleteGridComponent implements OnInit {
     private gridOptions:GridOptions;
@@ -64,42 +39,33 @@ export class AthleteGridComponent implements OnInit {
             {headerName: "Bronze", field: "bronze", width: 120},
 
             // 2) uncomment these 3
-            //{
+            // {
             //    headerName: "Gold",
             //    field: "gold",
-            //    cellRendererFramework: {
-            //        component: StarComponent,
-            //        moduleImports: [CommonModule]
-            //    },
+            //    cellRendererFramework: StarComponent,
             //    cellRendererParams: {
             //        color: "gold"
             //    },
             //    width: 120
-            //},
-            //{
+            // },
+            // {
             //    headerName: "Silver",
             //    field: "silver",
-            //    cellRendererFramework: {
-            //        component: StarComponent,
-            //        moduleImports: [CommonModule]
-            //    },
+            //    cellRendererFramework: StarComponent,
             //    cellRendererParams: {
             //        color: "silver"
             //    },
             //    width: 120
-            //},
-            //{
+            // },
+            // {
             //    headerName: "Bronze",
             //    field: "bronze",
-            //    cellRendererFramework: {
-            //        component: StarComponent,
-            //        moduleImports: [CommonModule]
-            //    },
+            //    cellRendererFramework: StarComponent,
             //    cellRendererParams: {
             //        color: "#CD7F32"
             //    },
             //    width: 120
-            //}
+            // }
         ];
     }
 }

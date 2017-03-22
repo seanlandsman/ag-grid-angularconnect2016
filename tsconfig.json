@@ -8,20 +8,6 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "outDir": "lib",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "types": [
-      "core-js"
-    ]
-  },
-  "files": [
-    "app/boot.ts",
-    "app/app.module.ts",
-    "app/app.component.ts",
-    "app/athlete-grid.component.ts",
-    "app/athlete.ts",
-    "app/athlete.service.ts"
-  ]
+    "lib": ["dom", "es2015"]
+  }
 }

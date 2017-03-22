@@ -3,7 +3,7 @@ import {Http,Response} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import {Athlete} from "./athlete";
+import {Athlete} from "../athlete";
 
 @Injectable()
 export class AthleteService {

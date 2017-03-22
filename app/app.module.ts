@@ -2,21 +2,25 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 
-import {AgGridModule} from 'ag-grid-ng2/main';
+import {AgGridModule} from 'ag-grid-angular/main';
 
 import {AppComponent} from "./app.component";
-import {AthleteGridComponent} from "./athlete-grid.component";
-import {AthleteService} from "./athlete.service";
+import {AthleteGridComponent} from "./components/athlete-grid.component";
+import {AthleteService} from "./services/athlete.service";
+import {StarComponent} from "./components/star.component";
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        AgGridModule.forRoot()
+        AgGridModule.withComponents(
+            [StarComponent]
+        )
     ],
     declarations: [
         AppComponent,
-        AthleteGridComponent
+        AthleteGridComponent,
+        StarComponent
     ],
     providers: [
         AthleteService
