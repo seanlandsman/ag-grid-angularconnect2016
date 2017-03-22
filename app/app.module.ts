@@ -13,6 +13,8 @@ import {StarComponent} from "./components/star.component";
     imports: [
         BrowserModule,
         HttpModule,
+        // to ensure that Angular compiler creates component factories for these components
+        // inserts the components into entryComponents
         AgGridModule.withComponents(
             [StarComponent]
         )
